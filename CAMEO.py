@@ -3,6 +3,9 @@ import pandas as pd
 
 def is_peroxide_former(chemical):
 
+    if chemical.cas == "None":
+        return False
+
     with sql.connect("cameo.sqlite") as database:
 
         cursor = database.cursor()
