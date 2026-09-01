@@ -1,5 +1,3 @@
 api_access_data.json
-__pycache__/objects.cpython-311.pyc
-__pycache__/functions.cpython-311.pyc
-__pycache__/CAMEO.cpython-311.pyc
+__pycache__/*
 .DS_Store
