@@ -23,9 +23,13 @@ for chemical in all_chemicals:
 
         peroxide_formers.append(chemical)
 
+        chemical.update_special_hazard_class("Peroxide Former")
+
     if any(GHS_code in chemical.GHS_codes for GHS_code in PHS_GHS_codes):
     
         PHS.append(chemical)
+
+        chemical.update_special_hazard_class("Particularly Hazardous Substance")
 
 
 output_file.add_list_to_report("Peroxide Formers", peroxide_formers)

@@ -8,6 +8,12 @@ access_token = api_access_info["api_token"]
 inventory_id = api_access_info["inventory_id"]
 
 
+def read_PHS_GHS_codes():
+    with open("PHS_GHS_Codes.txt", "r") as file:
+        return file.read().splitlines()
+
+
+
 class Chemical:
 
     def __init__(self, **kwargs):
@@ -15,19 +21,21 @@ class Chemical:
         for key, value in kwargs.items():
             setattr(self, key, value)
 
-        self.add_GHS_codes()
+        self.populate_attributes()
 
     def __str__(self):
 
         return self.name
 
-    def add_GHS_codes(self):
+    def populate_attributes(self):
+
+        detailed_data = ChemInventory.get_detailed_data(self)
 
         my_GHS_codes = []
 
-        data = ChemInventory.get_GHS_data(self)
+        GHS_data = detailed_data["ghs"]
 
-        for source in data:
+        for source in GHS_data:
 
             hazard_statements = source["hazardstatements"].split("|")
 
@@ -38,6 +46,28 @@ class Chemical:
                     my_GHS_codes.append(GHS_code)
 
         self.GHS_codes = my_GHS_codes
+
+        try:
+            designations = detailed_data["cf-11399"].strip("|").split("|")
+            self.special_hazards = designations
+        except KeyError:
+            self.special_hazards = []
+
+
+    def update_special_hazard_class(self, hazard):
+
+        if hazard not in self.special_hazards:
+
+            self.special_hazards.append(hazard)
+
+            payload = {
+                "authtoken": access_token,
+                "containerid": self.id,
+                "field": "cf-11399",
+                "newvalue": "|" + "|".join(self.special_hazards) + "|"
+                }
+
+            post("https://app.cheminventory.net/api/container/information/save", json = payload)
 
 
 
@@ -71,20 +101,15 @@ class ChemInventory:
     
 
     @staticmethod
-    def get_GHS_data(chemical):
+    def get_detailed_data(chemical):
         
         payload = {"authtoken": access_token, "containerid": chemical.id}
         
         response = post("https://app.cheminventory.net/api/container/information/load", json = payload).json()
         
-        ghs_data = response["data"]["ghs"]
+        data = response["data"]
 
-        return ghs_data
-        
-
-def read_PHS_GHS_codes():
-    with open("PHS_GHS_Codes.txt", "r") as file:
-        return file.read().splitlines()
+        return data
 
 
 
