@@ -19,6 +19,8 @@ PHS = []
 
 for chemical in all_chemicals:
 
+    chemical.update_reactive_groups()
+
     if CAMEO.is_peroxide_former(chemical):
 
         peroxide_formers.append(chemical)

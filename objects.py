@@ -1,7 +1,8 @@
-import pandas as pd
+from pandas import read_json
 from requests import post 
+import CAMEO
 
-api_access_info = pd.read_json("api_access_data.json", typ = "series")
+api_access_info = read_json("api_access_data.json", typ = "series")
 
 access_token = api_access_info["api_token"]
 
@@ -13,7 +14,6 @@ def read_PHS_GHS_codes():
         return file.read().splitlines()
 
 
-
 class Chemical:
 
     def __init__(self, **kwargs):
@@ -21,19 +21,31 @@ class Chemical:
         for key, value in kwargs.items():
             setattr(self, key, value)
 
+        self.detailed_data = ChemInventory.get_detailed_data(self)
+
         self.populate_attributes()
 
     def __str__(self):
 
         return self.name
+    
+
+    def set_tag_attribute(self, chem_inventory_tag_id, attribute_name):
+
+        try:
+            chem_inventory_tags = self.detailed_data[f"cf-{chem_inventory_tag_id}"]
+            designations = chem_inventory_tags.strip("|").split("|")
+        except KeyError:
+            designations = []
+
+        setattr(self, attribute_name, designations)
+
 
     def populate_attributes(self):
 
-        detailed_data = ChemInventory.get_detailed_data(self)
-
         my_GHS_codes = []
 
-        GHS_data = detailed_data["ghs"]
+        GHS_data = self.detailed_data["ghs"]
 
         for source in GHS_data:
 
@@ -47,11 +59,10 @@ class Chemical:
 
         self.GHS_codes = my_GHS_codes
 
-        try:
-            designations = detailed_data["cf-11399"].strip("|").split("|")
-            self.special_hazards = designations
-        except KeyError:
-            self.special_hazards = []
+        self.set_tag_attribute(11399, "special_hazards")
+
+        self.set_tag_attribute(11411, "reactive_groups")
+
 
 
     def update_special_hazard_class(self, hazard):
@@ -64,10 +75,37 @@ class Chemical:
                 "authtoken": access_token,
                 "containerid": self.id,
                 "field": "cf-11399",
-                "newvalue": "|" + "|".join(self.special_hazards) + "|"
+                "newvalue": ChemInventory.format_tags(self.special_hazards)
                 }
 
             post("https://app.cheminventory.net/api/container/information/save", json = payload)
+
+    
+    def update_reactive_groups(self):
+
+        chemical_reactive_groups = CAMEO.get_reactive_groups(self)
+
+        chem_inventory_needs_an_update = False
+
+        for reactive_group in chemical_reactive_groups:
+
+            if reactive_group not in self.reactive_groups:
+
+                self.reactive_groups.append(reactive_group)
+
+                chem_inventory_needs_an_update = True
+
+        if chem_inventory_needs_an_update:
+
+            payload = {
+                "authtoken": access_token,
+                "containerid": self.id,
+                "field": "cf-11411",
+                "newvalue": ChemInventory.format_tags(self.reactive_groups)
+                }
+
+            post("https://app.cheminventory.net/api/container/information/save", json = payload)
+
 
 
 
@@ -110,6 +148,11 @@ class ChemInventory:
         data = response["data"]
 
         return data
+
+    @staticmethod
+    def format_tags(list_of_tags):
+        return "|" + "|".join(list_of_tags) + "|"
+
 
 
 
