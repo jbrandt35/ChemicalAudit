@@ -1,6 +1,5 @@
-
 from datetime import datetime
-import os
+from os import path
 
 class New_Report:
 
@@ -12,7 +11,7 @@ class New_Report:
 
         self.name = "report_" + formatted_time + ".txt"
 
-        self.path = os.path.join("Reports", self.name)
+        self.path = path.join("Reports", self.name)
 
         self.content = ""
 

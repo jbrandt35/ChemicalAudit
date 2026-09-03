@@ -8,6 +8,8 @@ access_token = api_access_info["api_token"]
 
 inventory_id = api_access_info["inventory_id"]
 
+api_url = "https://app.cheminventory.net/api"
+
 
 def read_PHS_GHS_codes():
     with open("PHS_GHS_Codes.txt", "r") as file:
@@ -72,13 +74,12 @@ class Chemical:
             self.special_hazards.append(hazard)
 
             payload = {
-                "authtoken": access_token,
                 "containerid": self.id,
                 "field": "cf-11399",
                 "newvalue": ChemInventory.format_tags(self.special_hazards)
                 }
 
-            post("https://app.cheminventory.net/api/container/information/save", json = payload)
+            ChemInventory.post_to_api(payload, "/container/information/save")
 
     
     def update_reactive_groups(self):
@@ -98,13 +99,12 @@ class Chemical:
         if chem_inventory_needs_an_update:
 
             payload = {
-                "authtoken": access_token,
                 "containerid": self.id,
                 "field": "cf-11411",
                 "newvalue": ChemInventory.format_tags(self.reactive_groups)
                 }
 
-            post("https://app.cheminventory.net/api/container/information/save", json = payload)
+            ChemInventory.post_to_api(payload, "/container/information/save")
 
 
 
@@ -114,16 +114,13 @@ class ChemInventory:
     @staticmethod
     def get_all_chemicals():
 
-        api_url = "https://app.cheminventory.net/api/search/execute"
-
         payload = {
-            "authtoken": access_token,
             "inventory": inventory_id,
             "type": "name",               
             "contents": "%"     
         }
 
-        response = post(api_url, json = payload).json()
+        response = ChemInventory.post_to_api(payload, "/search/execute")
 
         chemicals = response["data"]["containers"]
 
@@ -141,9 +138,9 @@ class ChemInventory:
     @staticmethod
     def get_detailed_data(chemical):
         
-        payload = {"authtoken": access_token, "containerid": chemical.id}
-        
-        response = post("https://app.cheminventory.net/api/container/information/load", json = payload).json()
+        payload = {"containerid": chemical.id}
+
+        response = ChemInventory.post_to_api(payload, "/container/information/load")
         
         data = response["data"]
 
@@ -153,8 +150,11 @@ class ChemInventory:
     def format_tags(list_of_tags):
         return "|" + "|".join(list_of_tags) + "|"
 
+    @staticmethod
+    def post_to_api(payload, endpoint):
 
+        api_destination = api_url + endpoint
 
+        payload["authtoken"] = access_token
 
-
-
+        return post(api_destination, json = payload).json()
