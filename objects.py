@@ -133,7 +133,20 @@ class ChemInventory:
             chemical_objects.append(chemical_object)
 
         return chemical_objects
-    
+
+    @staticmethod
+    def locationid_to_locationname():
+
+        response = ChemInventory.post_to_api(dict(), "/location/load")
+
+        map = dict()
+
+        for location in response["data"]:
+
+            map[location["id"]] = location["name"]
+
+        return map
+
 
     @staticmethod
     def get_detailed_data(chemical):
