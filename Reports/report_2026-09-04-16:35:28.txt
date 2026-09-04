@@ -1,0 +1,44 @@
+***** Peroxide Formers *****
+Isopropy Alcohol
+Oleic acid, Technical MKCS1490 Grade 90%
+Styrene
+Diethyl ether
+Diethyl ether
+***** Particularly Hazardous Substances *****
+N,N'-Methylenebisacrylamide
+Toluene
+N,N-Dimethylformamide
+Paraformaldehyde
+Poly(methyl methacrylate)
+Poly(methyl methacrylate)
+Styrene
+Glutaraldehyde solution
+2-vinylpiridine
+Dichloromethane
+Acrylamide Solution
+N,N' - Methylenebis(acrylamide)
+Sodium Bromate
+Acrylamide
+Cobalt(II) Sulfate Heptahydrate
+Smooth-cast 310 part A
+Ferrocene
+Diphenyl(2,4,6-trimethylbenzoyl)phosphine oxide
+Benzophenone
+Solaris bonding primer
+***** Location Incompatibility *****
+----- Incompatibilities in Drawers to the left of the fridge > Krusty: acid and base -----
+***** acids: *****
+Ethylenediaminetetraacetic acid
+Rhodamine B (C.I.45170) for Microscopy
+Fluorescein (Free Acid)
+***** bases: *****
+Sodium hydroxide
+----- Incompatibilities in Drawers to the left of the fridge > Croissant: acid and base -----
+***** acids: *****
+Iron(III) chloride
+Fluorescein
+Rhodamine B
+***** bases: *****
+Sodium hydroxide solution
+Potassium Hydroxide
+Sodium Hydroxide

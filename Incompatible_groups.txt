@@ -1,0 +1,20 @@
+[
+    {
+    
+    "acid": ["Acids, Carboxylic", "Acids, Strong Non-oxidizing", "Acids, Strong Oxidizing", "Acids, Weak"],
+
+    "base": ["Bases, Strong", "Bases, Weak"]
+    
+    }
+    
+    ,
+
+    {
+
+    "flammable/combustile": ["Flammable"],
+
+    "oxidizer": ["Oxidizing Agents, Strong", "Oxidizing Agents, Weak"]
+    
+    }
+
+]

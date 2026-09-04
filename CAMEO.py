@@ -21,12 +21,17 @@ def is_peroxide_former(chemical):
         return False
 
     sql_query = """
-    SELECT chemicals.special_hazards
-    FROM chemical_cas
-    JOIN chemicals ON chemical_cas.chem_id = chemicals.id
-    WHERE chemical_cas.cas_id = ?
-    LIMIT 1
-    """
+        SELECT special_hazards
+        FROM chemicals
+        WHERE id = (
+            SELECT chem_id 
+            FROM chemical_cas 
+            WHERE cas_id = ? 
+            GROUP BY chem_id 
+            HAVING COUNT(cas_id) = 1 
+            LIMIT 1
+        );
+        """
 
     result = search_database(sql_query, chemical.cas)
 
@@ -38,23 +43,53 @@ def is_peroxide_former(chemical):
 
 def get_reactive_groups(chemical):
 
-    if chemical.cas == "None":
+    if chemical.cas == "N/A":
         return ["Insufficient Information for Classification"]
 
     sql_query = """
-    SELECT r.name
-    FROM chemical_cas cc
-    JOIN chemicals c 
-        ON cc.chem_id = c.id
-    JOIN mm_chemical_react mcr 
-        ON c.id = mcr.chem_id
-    JOIN reacts r 
-        ON mcr.react_id = r.id
-    WHERE cc.cas_id = ?;
+        SELECT c.name, r.name
+        FROM chemicals c
+        JOIN mm_chemical_react mcr ON c.id = mcr.chem_id
+        JOIN reacts r ON mcr.react_id = r.id
+        WHERE c.id = (
+            SELECT chem_id 
+            FROM chemical_cas 
+            WHERE cas_id = ? 
+            GROUP BY chem_id 
+            HAVING COUNT(cas_id) = 1 
+            LIMIT 1
+        );
     """
 
     result = search_database(sql_query, chemical.cas)
     
-    reactive_groups = [row[0] for row in result]
+    reactive_groups = [row[1] for row in result]
 
     return reactive_groups
+
+
+def get_description(chemical):
+
+    if chemical.cas == "N/A":
+        return "None"
+
+    sql_query = """
+    SELECT description
+    FROM chemicals
+    WHERE id = (
+        SELECT chem_id 
+        FROM chemical_cas 
+        WHERE cas_id = ? 
+        GROUP BY chem_id 
+        HAVING COUNT(cas_id) = 1 
+        LIMIT 1
+    );
+    """
+
+    result = search_database(sql_query, chemical.cas)
+
+    try:
+        description = result[0]
+        return description
+    except IndexError:
+        return "None"

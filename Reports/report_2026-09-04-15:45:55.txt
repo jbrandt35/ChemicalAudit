@@ -1,0 +1,402 @@
+***** Peroxide Formers *****
+Isopropy Alcohol
+Oleic acid, Technical MKCS1490 Grade 90%
+Styrene
+Diethyl ether
+Diethyl ether
+***** Particularly Hazardous Substances *****
+N,N'-Methylenebisacrylamide
+Toluene
+N,N-Dimethylformamide
+Paraformaldehyde
+Poly(methyl methacrylate)
+Poly(methyl methacrylate)
+Styrene
+Glutaraldehyde solution
+2-vinylpiridine
+Dichloromethane
+Acrylamide Solution
+N,N' - Methylenebis(acrylamide)
+Sodium Bromate
+Acrylamide
+Cobalt(II) Sulfate Heptahydrate
+Smooth-cast 310 part A
+Ferrocene
+Diphenyl(2,4,6-trimethylbenzoyl)phosphine oxide
+Benzophenone
+Solaris bonding primer
+***** Location Incompatibility *****
+----- Incompatibilities in Josh's Desk : PHSs and non_PHSs. -----
+***** PHSs: *****
+N,N'-Methylenebisacrylamide
+***** non_PHSs: *****
+Phosphate buffered saline pH 7.2 (1X)
+Phosphate buffered saline pH 7.2 (1X)
+Cell Culture Grade Water
+AquaStik Stone Grey Epoxy Putty
+AquaStik Stone Grey Epoxy Putty
+Alginic acid and Sodium Salt
+Calcium Chloride
+Phosphate Buffered Saline 7.4 pH
+----- Incompatibilities in Drawers to the left of the fridge > Krusty : acids and bases. -----
+***** acids: *****
+Ethylenediaminetetraacetic acid
+Rhodamine B (C.I.45170) for Microscopy
+Diacetone acrylamide
+Fluorescein (Free Acid)
+***** bases: *****
+Sodium hydroxide
+----- Incompatibilities in Drawers to the left of the fridge > Krusty : PHSs and non_PHSs. -----
+***** PHSs: *****
+Poly(methyl methacrylate)
+Poly(methyl methacrylate)
+***** non_PHSs: *****
+Ethylenediaminetetraacetic acid
+Sodium hydroxide
+Fluorinert™ FC-770
+Poly[butylene terephthalate-co-poly(alkylene glycol) terephthalate]
+Sodium thiosulfate
+Tetrabutylammonium hexafluorophosphate
+Brij® 58
+Magnesium Chloride, Hexahydrate, Molecular Biology Grade
+Dimethyl itaconate
+Chitin from shrimp shells
+Potassium phosphate dibasic
+Potassium phosphate monobasic powder
+PIPES
+Polystyrene
+Polyacrylamide
+EGTA
+Rhodamine B (C.I.45170) for Microscopy
+Diacetone acrylamide
+Methylene blue
+Poly(3-hexylthiophene-2,5-diyl)
+Poly(sodium 4-styrenesulfonate)
+Fluorescein Sodium Salt
+Sodium Phosphate Monobasic Dihydrate
+Fluorescein (Free Acid)
+Carbon Nanopowder
+Poly(allylamine) Hydrochloride
+1-octadecanethiol
+N-isopropylacrylamide
+2',7'-dichlorofluorescein
+Sodium Tungstate Dihydrate
+Rhodamine 6G
+Rhodamine 6G
+----- Incompatibilities in Drawers to the left of the fridge > Davinci : PHSs and non_PHSs. -----
+***** PHSs: *****
+Smooth-cast 310 part A
+***** non_PHSs: *****
+Mineral oil, heavy
+Poly(diallyldimethylammonium chloride) solution
+1,4-Butanediol
+KCl AgCl (Potassium Chloride Silver Chloride) Electrolyte
+Coumarin 153
+Signa Gel Electrode Gel
+Ethylene glycol
+Triton X-100
+Trimethylolpropane ethoxylate triacrylate
+NACL Crystal
+NACL Crystal
+Triton X-100
+Sodium dodecyl sulfate
+Poly(ethylene glycol)
+Triethanolamine
+Palsgaard PGPR 4175
+Ethyl Nonafluorobutylether
+Smooth-cast 310 part B
+Black All-Purpose Dye
+iodine concentrate, 0.05 mol I_2, Fixanal
+poly(l-lactic acid)
+UltraPure Glycerol
+2,4,6-Tribromophenyl acrylate
+----- Incompatibilities in Fume Hood > Flammable Cabinet > Left > Bottom : PHSs and non_PHSs. -----
+***** PHSs: *****
+Toluene
+N,N-Dimethylformamide
+***** non_PHSs: *****
+Hexamethylene diisocyanate
+Heptane
+200 Proof Ethanol
+Cyclohexane
+Acetone
+tert-Butanol
+Ethyl alcohol, Pure
+Isopropy Alcohol
+Diethyl ether
+200 Proof Ethanol
+Sodium bromide 1M
+Sodium bromide 1M
+Ulfiltered PSS5%
+PR-1200 RTV Prime Coat Clear
+----- Incompatibilities in Fume Hood > Flammable Cabinet > Right > Bottom : flammables and oxidizers. -----
+***** flammables: *****
+Methyl Alcohol, Anhydrous
+Sodium dodecyl sulfate
+Diethyl ether
+***** oxidizers: *****
+Ammonium Persulfate
+----- Incompatibilities in Fume Hood > Flammable Cabinet > Left > Top : flammables and oxidizers. -----
+***** flammables: *****
+Tetraethyl orthosilicae
+N,N,N′,N′-Tetramethylethylenediamine
+***** oxidizers: *****
+Ammonium Persulfate
+Ammonium Persulfate
+----- Incompatibilities in Fume Hood > Flammable Cabinet > Left > Top : PHSs and non_PHSs. -----
+***** PHSs: *****
+Dichloromethane
+***** non_PHSs: *****
+2,2′-Azobis(2-methylpropionamidine) dihydrochloride
+Tetraethyl orthosilicae
+Sebacoyl chloride
+N,N,N′,N′-Tetramethylethylenediamine
+Acrylamide/Bis-acrylamide
+Diethylene glycol
+Ammonium Persulfate
+Ammonium Persulfate
+Benzoyl peroxide
+Poly(hexamethylene diisocyanate)
+Methoxyperfluorobutane
+2,4,6-Tribromophenyl acrylate
+Octanoic acid
+Rhodamine 6G
+----- Incompatibilities in Fume Hood > Flammable Cabinet > Right > Top : PHSs and non_PHSs. -----
+***** PHSs: *****
+Paraformaldehyde
+Ferrocene
+***** non_PHSs: *****
+Dimethyl sulfoxide
+Hexamethylenediamene
+Perfluoro(methylcyclohexane)
+Hexamethyldisilazane
+Ethylene glycol
+Poly(lauryl methacrylate)
+Poly(lauryl methacrylate)
+Pyrogallol
+1-vinyl-2-pyrrolidinone
+----- Incompatibilities in Optics Room > Initiators : PHSs and non_PHSs. -----
+***** PHSs: *****
+Diphenyl(2,4,6-trimethylbenzoyl)phosphine oxide
+***** non_PHSs: *****
+Resins Omnirad 1173
+2-Benzyl-2-(dimethylamino)-4′-morpholinobutyrophenone
+N-Phenylglycine
+----- Incompatibilities in Fridge > Door : PHSs and non_PHSs. -----
+***** PHSs: *****
+Styrene
+Glutaraldehyde solution
+N,N' - Methylenebis(acrylamide)
+***** non_PHSs: *****
+Oleic acid, Technical MKCS1490 Grade 90%
+2,4,6-Tribromophenyl acrylate
+Trioctylmethylammonium Chloride
+Grace's insect medium w/ L-Glutamine w/o sodium bicarbonate
+Glycerol 1,3-diglycerolate
+2,2'-Azobis(2-methyl-proprionitrile, 98%
+Lithium phenyl-2,4,6-trimethylbenzoylphosphinate
+N-Isopropylacrylamide
+Propidium iodide solution
+2,4,6-tribromophenyl acrylate
+FluoSpheres sulfate, 1.0µm, yellow-green 505/515
+CellLight Actin-GFP
+Pyrrole, 98%
+Methyltri-n-octylammonium Chloride, >95%
+Divinylbenzene, 80%
+Triethylene glycol dimethacrylate
+2,4,6-tribromophenyl acrylate
+J Jell
+FluoSpheres carboxylate-modified microsphereds, 2 micron yellow-green flurorescent, 2% solids
+Poly(ehylene glycol) (1000) dimethacrylate
+----- Incompatibilities in Drawers to the left of the fridge > Croissant : acids and bases. -----
+***** acids: *****
+Iron(III) chloride
+Acrylamide
+Fluorescein
+Rhodamine B
+***** bases: *****
+Sodium hydroxide solution
+Potassium Hydroxide
+Sodium Hydroxide
+----- Incompatibilities in Drawers to the left of the fridge > Croissant : PHSs and non_PHSs. -----
+***** PHSs: *****
+Sodium Bromate
+Acrylamide
+Cobalt(II) Sulfate Heptahydrate
+***** non_PHSs: *****
+Ethylene glycol
+Triton X-100
+Sodium phosphate dibasic heptahydrate
+Magnesium sulfate
+Sucrose
+SYLGARD™ 184 Silicone Elastomer Curing Agent
+SYLGARD™ 186 Silicone Elastomer Curing Agent
+SE 1700 CATALYST
+Sodium hydroxide solution
+Poly(4-styrenesulfonic acid) solution
+4-Dodecylbenzenesulfonic acid
+RBS™ 25 solution
+A17247 Aliquat® 336 TG
+Hexadecane
+Silver nitrate
+Iron(III) chloride
+PEDOT:PSS
+Poly(acrylic acid) partial sodium salt solution
+2-Hydroxy-4′-(2-hydroxyethoxy)-2-methylpropiophenone
+2-Hydroxy-2-methylpropiophenone
+Ferroin Solution
+Tris(2,2′-bipyridyl)dichlororuthenium(II) hexahydrate
+Sodium Nitrate
+2-Acrylamido-2-methyl-1-propanesulfonic acid
+Potassium Hydroxide
+N-isopropylacrylamide
+Potassium Iodide
+Iodine
+Poly(acrylic acid)
+Methyltrioctylammonium chloride
+Sodium Hydroxide
+1H,1H,2H,2H-Perfluorododecyltrichlorosilane
+Gold(III) Chloride Trihydrate
+Methylacrylamide
+Titanium(IV) oxide
+Fluorescein
+Rhodamine B
+----- Incompatibilities in Fridge > Body : PHSs and non_PHSs. -----
+***** PHSs: *****
+Acrylamide Solution
+***** non_PHSs: *****
+Micro-particles based on polystyrene, size 200 nm
+Micro particles based on polystyrene, 3 microns dark red
+Uniform Latex Spheres, 0.49µm, 0.1% solids
+Uniform Latex Spheres, 0.304µm, 0.1% solids
+Uniform Latex Spheres, 0.173µm, 0.1% solids
+Uniform Latex Spheres, 0.173µm, 0.1% solids
+Uniform Latex Spheres, 0.304µm, 0.1% solids
+Uniform Latex Spheres, 0.173µm, 0.1% solids
+Uniform Latex Spheres, 0.262µm, 0.1% solids
+Micro particles based on polystyrene, 200nm
+Micro particles based on polystyrene, 500nm
+Micro particles based on polystyrene, 200nm
+Ethylene glycol dimethacrylate
+Loctite 3108
+Micro particles based on polystyrene, 200nm
+Polystyrene latex spheres 0.1% weight by volume nom.size 2.6 micron size uniformity 3% approx. spheres - cc 1.04e+11
+Polystyrene latex spheres 0.1% weight by volume nom.size 2.6 micron size uniformity 3% approx. spheres - cc 1.04e+11
+Polystyrene latex spheres 0.1% weight by volume nom.size 2.6 micron size uniformity 3% approx. spheres - cc 1.04e+11
+Uniform Latex Spheres, 0.304µm, 0.1% solids
+Uniform Latex Spheres, 0.304µm, 0.1% solids
+Loctite 3108
+Iodine concentrate, 0.05 mol I2
+(−)-Methyl (R)-3-hydroxyvalerate
+----- Incompatibilities in Fridge > Freezer : PHSs and non_PHSs. -----
+***** PHSs: *****
+2-vinylpiridine
+***** non_PHSs: *****
+Melanin from Sepia officinalis
+Fluorescein Diacetate
+Cell Stains
+Melanin from Sepia officinalis
+Melanin from Sepia officinalis
+Methyl undecanoate
+----- Incompatibilities in Metal Shelves > Right : PHSs and non_PHSs. -----
+***** PHSs: *****
+Benzophenone
+***** non_PHSs: *****
+Amberlite XAD-4
+Ethylenediaminetetraacetic acid
+I-carrageenan
+K-Carrageenan
+Amberlite XAD-1180
+Sodium bromide
+Sodium alginate
+Agrose
+Potassium hexacyanoferrate(II) trihydrate
+Malonic acid
+Sodium acetate
+Citric acid
+Gelatin from porcine skin
+80A Clear cast liquid ISO 210A #1 Kit
+80A Clear cast liquid POL 8090B 1# Kit
+Poly(4-styrenesulfonic acid-co-maleic acid) sodium salt
+Poly(vinyl alcohol)
+Gelatin from bovine skin
+Sodium sulfite
+Potassium bromide
+Potassium Chloride
+5 minute epoxy
+Teroson MS 5510 BK Elastic Adhesive
+Soudaseal 50LM
+540 Polyurethane adhesive sealant
+Dowsil 999-A Silicone building and glazing sealant
+730 hybrid sealant
+SLIDE Silicone remover
+Crystal clear acrylic coating 1303
+Clear Flex 30, part B
+Clear Flex 30, part A
+Solaris clear liquid silicone rubber, part A
+Solaris clear liquid silicone rubber, part B
+NOVOCOS matte silicone solvent
+Blickrylic economy acrylic polymer, venetian red pint
+NOVOCS Gloss silicone solvent
+Si-tac silicone textile adhesive, part A
+Si-tac silicone textile adhesive, part B
+Epoxy resin
+Psycho paint platinum silicone paint, part B
+Psycho paint platinum silicone paint, part A
+Epoxy resin, A
+Liquid latex fashion black
+Mold Max 10T Silicone rubber compound, part B
+Mold max 20, part B
+Skin tite, part A
+Skin tite, part B
+Marine adhesive sealant fast cure 4200
+Sil-poly silicone rubber adhesive
+Flexible stretchable fabric glue
+Thi-vex silicone thixatropic agent
+Colores orange
+Doming system - clear 1011
+Doming system - AB - 88 hardener
+Colores purple
+Colores yellow
+Colores coral
+Colores royal blue
+Colores green
+Colores fuchsia pink
+Colores turquoise
+Neverwet liquid repelling barrier base coat
+----- Incompatibilities in Metal Shelves > Flammables cabinet : PHSs and non_PHSs. -----
+***** PHSs: *****
+Solaris bonding primer
+***** non_PHSs: *****
+All purpose cement
+Tape primer 94
+Goo gone
+Goo gone
+Rust-oleum metalic
+Neverwet liquid repelling barrier step 2 top coat
+Pliobond 25
+Ultratane butane fuel
+Contact cement
+Flex seal clear
+Flex seal clear
+Urethane and styrene silicone release agent MR 315
+Heavy duty paintable release agent MR-307
+Ultratane butane fuel
+Super 77 spray adhesive
+Ultratane butane fuel
+Fusion for plastic gloss
+Enamel finish
+SuperSeal
+WD-40
+Universal mold release
+Plasti dip
+Primer fast drying
+Spray paint yellow medium
+Plasti dip create your color
+Ease release 200
+Colormaster paint and primer black
+Plasti dip
+Specialty finish
+Plasti dip multi-purpose rubber coating
+Fusion for plastic flat
+Hi-strength 90 spray adhesive

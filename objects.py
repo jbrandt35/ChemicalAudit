@@ -15,6 +15,11 @@ def read_PHS_GHS_codes():
     with open("PHS_GHS_Codes.txt", "r") as file:
         return file.read().splitlines()
 
+def read_flammable_GHS_codes():
+        with open("Flammable_GHS_Codes.txt", "r") as file:
+            return file.read().splitlines()
+
+
 
 class Chemical:
 
@@ -65,6 +70,7 @@ class Chemical:
 
         self.set_tag_attribute(11411, "reactive_groups")
 
+        self.update_description()
 
 
     def update_special_hazard_class(self, hazard):
@@ -81,12 +87,37 @@ class Chemical:
 
             ChemInventory.post_to_api(payload, "/container/information/save")
 
+
+    def update_description(self):
+
+        description = CAMEO.get_description(self)
+
+        payload = {
+                "containerid": self.id,
+                "field": "cf-11415",
+                "newvalue": description
+                }
+
+        ChemInventory.post_to_api(payload, "/container/information/save")
+
+
+
+    def is_in_reactive_category(self, list_of_hazards):
+
+        return any(i in list_of_hazards for i in self.reactive_groups)
+
     
     def update_reactive_groups(self):
 
         chemical_reactive_groups = CAMEO.get_reactive_groups(self)
 
         chem_inventory_needs_an_update = False
+
+        flammable_GHS_codes = read_flammable_GHS_codes()
+
+        if any(GHS_code in flammable_GHS_codes for GHS_code in self.GHS_codes):
+
+            chemical_reactive_groups.append("Flammable")
 
         for reactive_group in chemical_reactive_groups:
 
@@ -95,6 +126,7 @@ class Chemical:
                 self.reactive_groups.append(reactive_group)
 
                 chem_inventory_needs_an_update = True
+
 
         if chem_inventory_needs_an_update:
 
@@ -105,7 +137,6 @@ class Chemical:
                 }
 
             ChemInventory.post_to_api(payload, "/container/information/save")
-
 
 
 
@@ -133,6 +164,17 @@ class ChemInventory:
             chemical_objects.append(chemical_object)
 
         return chemical_objects
+    
+
+    @staticmethod
+    def parse_location(location, location_data):
+
+        if location["parent"] == 0:
+            return location["name"]
+        else:
+            parent_location = next((loc for loc in location_data if loc.get("id") == location["parent"]), None)
+            return ChemInventory.parse_location(parent_location, location_data) + " > " + location["name"]
+
 
     @staticmethod
     def locationid_to_locationname():
@@ -143,7 +185,11 @@ class ChemInventory:
 
         for location in response["data"]:
 
-            map[location["id"]] = location["name"]
+            location_has_children = next((loc for loc in response["data"] if loc.get("parent") == location["id"]), False)
+
+            if not location_has_children:
+
+                map[location["id"]] = ChemInventory.parse_location(location, response["data"])
 
         return map
 

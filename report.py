@@ -15,7 +15,7 @@ class New_Report:
 
         self.content = ""
 
-    def add_list_to_report(self, title, item_list):
+    def add_list(self, title, item_list):
 
         self.content += "*" * 5 + " " + title + " " + "*" * 5 + "\n"
 
@@ -23,7 +23,16 @@ class New_Report:
 
             self.content += str(item) + "\n"
 
-    def publish_report(self):
+    def add_section(self, title):
+
+        self.content += "*" * 5 + " " + title + " " + "*" * 5 + "\n"
+
+    def add_subsection(self, title):
+
+        self.content += "-" * 5 + " " + title + " " + "-" * 5 + "\n"
+
+
+    def publish(self):
         with open(self.path, "w") as file:
             file.write(self.content)
 

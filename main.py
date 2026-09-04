@@ -1,6 +1,8 @@
 from objects import *
 import CAMEO
 import report
+import json
+import copy
 
 peroxide_formers = []
 PHS = []
@@ -11,6 +13,9 @@ location_mapping = ChemInventory.locationid_to_locationname()
 output_file = report.New_Report()
 
 PHS_GHS_codes = read_PHS_GHS_codes()
+
+with open("incompatible_groups.txt", "r") as f:
+    incompatability_settings = json.load(f)
 
 
 def check_for_peroxide_former(chemical):
@@ -32,39 +37,35 @@ def check_for_particularly_hazardous_substance(chemical):
 
 def check_location_compatibilities():
 
-     for location_id, chemical_list in locations.items():
+    for location_id, chemical_list in locations.items():
 
-        acids = []
-        bases = []
+        for group in incompatability_settings:
 
-        for chemical in chemical_list:
+            categories = group.keys()
 
-             # Change to be marked as Base or Acid during creation, same with oxidizer, flammable, etc
+            location_lookup = dict(zip(categories, []))
 
-             chemical_is_acid = any("Acids," in reactive_group for reactive_group in chemical.reactive_groups)
-             chemical_is_base = any("Base" in reactive_group for reactive_group in chemical.reactive_groups)
+            for category in categories:
 
-             if chemical_is_acid:
-                  acids.append(chemical)
+                chemicals_in_category = []
 
-             if chemical_is_base:
-                  bases.append(chemical)
+                for chemical in chemical_list:
 
-        if len(acids) > 0 and len(bases) > 0:
+                    if chemical.is_in_reactive_category(group[category]):
+                        chemicals_in_category.append(chemical)
+                    
+                location_lookup[category] = copy.deepcopy(chemicals_in_category)
 
-            print(f"{location_mapping[location_id]} has both acids and bases.")
+            if sum(len(i) > 0 for i in location_lookup.values()) >= 2:
 
-            print("Acids: " + "\n")
-            for acid in acids:
-                  print(str(acid) + "\n")
+                subsection_title = f"Incompatibilities in {location_mapping[location_id]}: {' and '.join(categories)}"
 
-            print("Bases: " + "\n")
-            for base in bases:
-                  print(str(base) + "\n")
+                output_file.add_subsection(subsection_title)
 
-        else:
+                for (category, lst) in location_lookup.items():
 
-             print(f"No location incompatibilities found in {location_mapping[location_id]}")
+                     output_file.add_list(f"{category}s:", lst)
+
 
 
 print("Importing Inventory...")
@@ -77,25 +78,26 @@ print("Checking for peroxide formers and PHS...")
 
 for chemical in all_chemicals:
 
-    chemical.update_reactive_groups()
-
     check_for_particularly_hazardous_substance(chemical)
 
     check_for_peroxide_former(chemical)
+
+    chemical.update_reactive_groups()
 
     if chemical.location in locations:
         locations[chemical.location].append(chemical)
     else:
         locations[chemical.location] = [chemical]
 
-output_file.add_list_to_report("Peroxide Formers", peroxide_formers)
+output_file.add_list("Peroxide Formers", peroxide_formers)
 
-output_file.add_list_to_report("Particularly Hazardous Substances", PHS)
+output_file.add_list("Particularly Hazardous Substances", PHS)
 
 print("Checking location compatabilities...")
+output_file.add_section("Location Incompatibility")
 
 check_location_compatibilities()
 
 print("Compiling Report...")
 
-output_file.publish_report()
+output_file.publish()
