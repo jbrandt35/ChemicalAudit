@@ -1,12 +1,17 @@
 from pandas import read_json
 from requests import post 
 import CAMEO
+import os
 
-api_access_info = read_json("api_access_data.json", typ = "series")
 
-access_token = api_access_info["api_token"]
+try:
+    api_access_info = read_json("api_access_data.json", typ = "series")
+    access_token = api_access_info["api_token"]
+    inventory_id = api_access_info["inventory_id"]
+except FileNotFoundError:
+    access_token = os.environ.get("API_key")
+    inventory_id = os.environ.get("inventory_id")
 
-inventory_id = api_access_info["inventory_id"]
 
 api_url = "https://app.cheminventory.net/api"
 
