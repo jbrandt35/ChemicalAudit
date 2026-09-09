@@ -28,9 +28,13 @@ class Chemical:
         for key, value in kwargs.items():
             setattr(self, key, value)
 
+        # Get existing data from ChemInventory and populate class attributes
+
         self.detailed_data = ChemInventory.get_detailed_data(self)
 
         self.populate_attributes()
+
+        self.update_description()
 
     def __str__(self):
 
@@ -41,16 +45,16 @@ class Chemical:
 
         try:
             chem_inventory_tags = self.detailed_data[f"cf-{chem_inventory_tag_id}"]
-            designations = chem_inventory_tags.strip("|").split("|")
+            designations = set(chem_inventory_tags.strip("|").split("|"))
         except KeyError:
-            designations = []
+            designations = set()
 
         setattr(self, attribute_name, designations)
 
 
     def populate_attributes(self):
 
-        my_GHS_codes = []
+        my_GHS_codes = set()
 
         GHS_data = self.detailed_data["ghs"]
 
@@ -58,34 +62,26 @@ class Chemical:
 
             hazard_statements = source["hazardstatements"].split("|")
 
-            for GHS_code in hazard_statements:
+            my_GHS_codes.update([GHS_code for GHS_code in hazard_statements if GHS_code != "None"])
 
-                if GHS_code not in my_GHS_codes and GHS_code != "None":
-
-                    my_GHS_codes.append(GHS_code)
-
-        self.GHS_codes = my_GHS_codes
+        self.GHS_codes = set(my_GHS_codes)
 
         self.set_tag_attribute(11399, "special_hazards")
 
         self.set_tag_attribute(11411, "reactive_groups")
 
-        self.update_description()
-
 
     def update_special_hazard_class(self, hazard):
 
-        if hazard not in self.special_hazards:
+        self.special_hazards.add(hazard)
 
-            self.special_hazards.append(hazard)
+        payload = {
+            "containerid": self.id,
+            "field": "cf-11399",
+            "newvalue": ChemInventory.format_tags(self.special_hazards)
+            }
 
-            payload = {
-                "containerid": self.id,
-                "field": "cf-11399",
-                "newvalue": ChemInventory.format_tags(self.special_hazards)
-                }
-
-            ChemInventory.post_to_api(payload, "/container/information/save")
+        ChemInventory.post_to_api(payload, "/container/information/save")
 
 
     def update_description(self):
@@ -109,34 +105,23 @@ class Chemical:
     
     def update_reactive_groups(self):
 
-        chemical_reactive_groups = CAMEO.get_reactive_groups(self)
-
-        chem_inventory_needs_an_update = False
+        chemical_reactive_groups = set(CAMEO.get_reactive_groups(self))
 
         flammable_GHS_codes = read_flammable_GHS_codes()
 
         if any(GHS_code in flammable_GHS_codes for GHS_code in self.GHS_codes):
 
-            chemical_reactive_groups.append("Flammable")
+            chemical_reactive_groups.add("Flammable")
 
-        for reactive_group in chemical_reactive_groups:
+        self.reactive_groups.update(chemical_reactive_groups)
 
-            if reactive_group not in self.reactive_groups:
+        payload = {
+            "containerid": self.id,
+            "field": "cf-11411",
+            "newvalue": ChemInventory.format_tags(self.reactive_groups)
+            }
 
-                self.reactive_groups.append(reactive_group)
-
-                chem_inventory_needs_an_update = True
-
-
-        if chem_inventory_needs_an_update:
-
-            payload = {
-                "containerid": self.id,
-                "field": "cf-11411",
-                "newvalue": ChemInventory.format_tags(self.reactive_groups)
-                }
-
-            ChemInventory.post_to_api(payload, "/container/information/save")
+        ChemInventory.post_to_api(payload, "/container/information/save")
 
 
 

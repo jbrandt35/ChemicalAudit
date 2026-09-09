@@ -3,11 +3,12 @@ import CAMEO
 import report
 import json
 import copy
+from collections import defaultdict
 
 peroxide_formers = []
 PHS = []
 
-locations = dict()
+locations = defaultdict(list)
 location_mapping = ChemInventory.locationid_to_locationname()
 
 output_file = report.New_Report()
@@ -84,10 +85,7 @@ for chemical in all_chemicals:
 
     chemical.update_reactive_groups()
 
-    if chemical.location in locations:
-        locations[chemical.location].append(chemical)
-    else:
-        locations[chemical.location] = [chemical]
+    locations[chemical.location].append(chemical)
 
 output_file.add_list("Peroxide Formers", peroxide_formers)
 
