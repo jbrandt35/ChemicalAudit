@@ -15,7 +15,7 @@ output_file = report.New_Report()
 
 PHS_GHS_codes = read_PHS_GHS_codes()
 
-with open("incompatible_groups.txt", "r") as f:
+with open("Incompatible_groups.txt", "r") as f:
     incompatability_settings = json.load(f)
 
 
