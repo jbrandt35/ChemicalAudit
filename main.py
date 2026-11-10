@@ -24,16 +24,20 @@ def check_for_peroxide_former(chemical):
     if CAMEO.is_peroxide_former(chemical):
     
             peroxide_formers.append(chemical)
+
+            if chemical.is_editable:
     
-            chemical.update_special_hazard_class("Peroxide Former")
+                chemical.update_special_hazard_class("Peroxide Former")
 
 def check_for_particularly_hazardous_substance(chemical):
 
      if any(GHS_code in chemical.GHS_codes for GHS_code in PHS_GHS_codes):
          
              PHS.append(chemical)
+
+             if chemical.is_editable:
      
-             chemical.update_special_hazard_class("Particularly Hazardous Substance")
+                chemical.update_special_hazard_class("Particularly Hazardous Substance")
 
 
 def check_location_compatibilities():
@@ -69,7 +73,7 @@ def check_location_compatibilities():
 
 
 
-print("Importing Inventory...")
+print("Importing inventory...")
 
 all_chemicals = ChemInventory.get_all_chemicals()
 
@@ -83,7 +87,9 @@ for chemical in all_chemicals:
 
     check_for_peroxide_former(chemical)
 
-    chemical.update_reactive_groups()
+    if chemical.is_editable:
+
+        chemical.update_reactive_groups()
 
     locations[chemical.location].append(chemical)
 

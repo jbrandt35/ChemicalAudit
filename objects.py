@@ -23,8 +23,7 @@ def read_PHS_GHS_codes():
 def read_flammable_GHS_codes():
         with open("Flammable_GHS_Codes.txt", "r") as file:
             return file.read().splitlines()
-
-
+    
 
 class Chemical:
 
@@ -33,18 +32,17 @@ class Chemical:
         for key, value in kwargs.items():
             setattr(self, key, value)
 
-        # Get existing data from ChemInventory and populate class attributes
-
+        # Get existing data from ChemInventory 
         self.detailed_data = ChemInventory.get_detailed_data(self)
 
+        # Populate internal class attributes
         self.populate_attributes()
 
-        self.update_description()
+        if self.is_editable:
+            self.update_description()
 
     def __str__(self):
-
         return self.name
-    
 
     def set_tag_attribute(self, chem_inventory_tag_id, attribute_name):
 
@@ -74,6 +72,10 @@ class Chemical:
         self.set_tag_attribute(11399, "special_hazards")
 
         self.set_tag_attribute(11411, "reactive_groups")
+
+        self.set_tag_attribute(11727, "checked_by")
+
+        self.check_if_editable()
 
 
     def update_special_hazard_class(self, hazard):
@@ -129,7 +131,19 @@ class Chemical:
         ChemInventory.post_to_api(payload, "/container/information/save")
 
 
+    def check_if_editable(self):
 
+        if len(self.checked_by) > 0:
+
+            if self.checked_by != {"None"}: 
+
+                self.is_editable = False
+
+                return None
+
+        self.is_editable = True
+
+        
 class ChemInventory:
 
     @staticmethod
@@ -154,8 +168,8 @@ class ChemInventory:
             chemical_objects.append(chemical_object)
 
         return chemical_objects
-    
 
+    
     @staticmethod
     def parse_location(location, location_data):
 
@@ -207,3 +221,4 @@ class ChemInventory:
         payload["authtoken"] = access_token
 
         return post(api_destination, json = payload).json()
+
